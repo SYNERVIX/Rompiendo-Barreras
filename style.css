@@ -1,399 +1,53 @@
-// ==========================================
-// INICIO DE AVENTURA
-// ==========================================
+/* =========================
+   CONFIGURACIÓN GENERAL
+========================= */
 
 
-const btnInicio = document.getElementById("btnInicio");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 
-if(btnInicio){
+*{
 
-btnInicio.addEventListener("click",()=>{
+margin:0;
 
+padding:0;
 
-document
-.getElementById("aprende")
-.scrollIntoView({
-
-behavior:"smooth"
-
-});
-
-
-});
+box-sizing:border-box;
 
 }
 
 
 
+html{
 
-
-
-// ==========================================
-// TARJETAS EDUCATIVAS
-// ==========================================
-
-
-const botonesInfo =
-document.querySelectorAll(".btn-info");
-
-
-
-const mensajes=[
-
-
-"Ejemplo: Pensar que una persona no puede lograr algo solo por su apariencia o procedencia.",
-
-
-"Ejemplo: Creer que todos los integrantes de un grupo son iguales sin conocerlos.",
-
-
-"Ejemplo: Excluir o tratar mal a alguien por sus características personales."
-
-];
-
-
-
-botonesInfo.forEach((boton,index)=>{
-
-
-boton.addEventListener("click",()=>{
-
-
-let caja =
-boton.parentElement.querySelector(".mensaje-info");
-
-
-caja.innerHTML = mensajes[index];
-
-
-});
-
-});
-
-
-
-
-
-
-
-
-// ==========================================
-// HISTORIAS INTERACTIVAS
-// ==========================================
-
-
-const opciones =
-document.querySelectorAll(".opcion");
-
-
-
-opciones.forEach(opcion=>{
-
-
-opcion.addEventListener("click",()=>{
-
-
-let resultado =
-opcion.parentElement.querySelector(".resultado");
-
-
-
-if(opcion.classList.contains("correcta")){
-
-
-resultado.innerHTML =
-"✅ Excelente decisión. Demuestras empatía, respeto e inclusión.";
-
-
-resultado.style.color="#00b894";
-
-
-}
-
-else{
-
-
-resultado.innerHTML =
-"❌ Esta acción puede generar exclusión. Reflexiona sobre cómo afecta a los demás.";
-
-
-resultado.style.color="#ff4757";
-
+scroll-behavior:smooth;
 
 }
 
 
 
-});
+body{
 
-});
+font-family:'Poppins',sans-serif;
 
+background:
 
+linear-gradient(
+180deg,
+#fff7e8,
+#eef7ff,
+#f7edff
+);
 
-
-
-
-
-// ==========================================
-// QUIZ
-// ==========================================
-
-
-let puntaje=0;
-
-
-let preguntasRespondidas=0;
-
-
-
-const respuestas =
-document.querySelectorAll(".respuesta");
-
-
-
-respuestas.forEach(respuesta=>{
-
-
-respuesta.addEventListener("click",()=>{
-
-
-if(respuesta.disabled){
-
-return;
+color:#333;
 
 }
 
 
 
-let grupo =
-respuesta.parentElement;
+.pagina{
 
-
-
-grupo
-.querySelectorAll("button")
-.forEach(btn=>{
-
-btn.disabled=true;
-
-});
-
-
-
-preguntasRespondidas++;
-
-
-
-if(respuesta.classList.contains("correctaQuiz")){
-
-
-puntaje +=25;
-
-
-respuesta.style.background="#00b894";
-
-
-}
-
-else{
-
-
-respuesta.style.background="#ff4757";
-
-
-}
-
-
-
-document
-.getElementById("resultadoQuiz")
-.innerHTML=
-"Puntaje: "+puntaje;
-
-
-
-});
-
-});
-
-
-
-
-
-
-
-// ==========================================
-// PUPILETRAS
-// ==========================================
-
-
-
-const palabrasJuego=[
-
-
-"RESPETO",
-
-"EMPATIA",
-
-"IGUALDAD",
-
-"INCLUSION",
-
-"EQUIDAD",
-
-"DIVERSIDAD",
-
-"TOLERANCIA",
-
-"SOLIDARIDAD",
-
-"AMISTAD",
-
-"PREJUICIO",
-
-"RACISMO",
-
-"BURLA",
-
-"EXCLUSION",
-
-"ODIO",
-
-"VIOLENCIA"
-
-
-];
-
-
-
-let palabrasEncontradas=[];
-
-
-
-const letras =
-document.querySelectorAll("#pupiletras td");
-
-
-
-let seleccion="";
-
-
-
-letras.forEach(letra=>{
-
-
-letra.addEventListener("click",()=>{
-
-
-letra.classList.toggle("letra-activa");
-
-
-
-seleccion="";
-
-
-
-document
-.querySelectorAll(".letra-activa")
-.forEach(l=>{
-
-
-seleccion += l.textContent;
-
-
-});
-
-
-
-buscarPalabra();
-
-
-});
-
-});
-
-
-
-
-
-function buscarPalabra(){
-
-
-
-palabrasJuego.forEach(palabra=>{
-
-
-if(
-
-seleccion.includes(palabra)
-
-&&
-
-!palabrasEncontradas.includes(palabra)
-
-){
-
-
-palabrasEncontradas.push(palabra);
-
-
-
-document
-.getElementById("contadorPalabras")
-.innerHTML =
-
-palabrasEncontradas.length+
-" / 15 palabras encontradas";
-
-
-
-let avance =
-
-(palabrasEncontradas.length/15)*100;
-
-
-
-document
-.getElementById("avanceJuego")
-.style.width=
-avance+"%";
-
-
-
-
-
-document
-.getElementById("mensajeJuego")
-.innerHTML=
-
-"🎉 Encontraste: "+palabra;
-
-
-
-}
-
-
-
-});
-
-
-
-
-
-if(palabrasEncontradas.length===15){
-
-
-document
-.getElementById("mensajeJuego")
-.innerHTML=
-
-"🏆 ¡Excelente! Completaste la misión de igualdad.";
-
-
-}
-
-
+overflow:hidden;
 
 }
 
@@ -403,150 +57,1080 @@ document
 
 
 
+/* =========================
+       PORTADA
+========================= */
 
 
-// ==========================================
-// FORMULARIO
-// ==========================================
+.inicio{
+
+min-height:750px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+padding:50px 8%;
+
+position:relative;
+
+overflow:hidden;
 
 
-const formulario =
-document.getElementById("formOpinion");
+background:
 
-
-
-const mensajeEnvio =
-document.getElementById("mensajeEnvio");
-
-
-
-if(formulario){
-
-
-formulario.addEventListener("submit",()=>{
-
-
-if(mensajeEnvio){
-
-
-mensajeEnvio.style.display="block";
-
-
-mensajeEnvio.innerHTML=
-
-"✅ Gracias por compartir tu reflexión. Tu opinión ayuda a construir una sociedad más inclusiva.";
-
-
-}
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-// ==========================================
-// MENSAJE FINAL
-// ==========================================
-
-
-
-const btnFinal =
-document.getElementById("btnMensajeFinal");
-
-
-
-if(btnFinal){
-
-
-btnFinal.addEventListener("click",()=>{
-
-
-document
-.getElementById("textoFinal")
-.innerHTML=
-
-"🌎 Recuerda: cada acción de respeto puede cambiar la vida de otra persona.";
-
-
-
-});
-
-}
-
-
-
-
-
-
-
-
-// ==========================================
-// ANIMACIONES SCROLL
-// ==========================================
-
-
-
-const elementos =
-
-document.querySelectorAll(
-
-".tarjeta, .historia, .video-card, .pupiletras-container, .participacion"
-
+linear-gradient(
+135deg,
+#6c5ce7,
+#0984e3,
+#00b894
 );
 
 
-
-const observador =
-
-new IntersectionObserver((entradas)=>{
-
-
-entradas.forEach(entrada=>{
-
-
-if(entrada.isIntersecting){
-
-
-entrada.target.style.opacity="1";
-
-
-entrada.target.style.transform=
-"translateY(0)";
-
+color:white;
 
 }
 
 
-});
 
 
-});
+.inicio:before{
+
+content:"";
+
+position:absolute;
+
+width:500px;
+
+height:500px;
+
+background:#ffd93d;
+
+border-radius:50%;
+
+top:-180px;
+
+left:-150px;
+
+opacity:.35;
+
+}
 
 
 
-elementos.forEach(elemento=>{
+
+.inicio:after{
+
+content:"";
+
+position:absolute;
+
+width:450px;
+
+height:450px;
+
+background:#ff7675;
+
+border-radius:50%;
+
+right:-150px;
+
+bottom:-150px;
+
+opacity:.35;
+
+}
 
 
-elemento.style.opacity="0";
+
+.contenido-inicio{
+
+position:relative;
+
+z-index:2;
+
+max-width:900px;
+
+}
 
 
-elemento.style.transform=
-"translateY(40px)";
+
+.contenido-inicio h1{
+
+font-size:75px;
+
+font-weight:900;
+
+text-shadow:
+
+0 10px 20px rgba(0,0,0,.3);
+
+}
 
 
-elemento.style.transition=
-"0.8s";
+
+.contenido-inicio h2{
+
+font-size:38px;
+
+margin:20px 0;
+
+}
 
 
-observador.observe(elemento);
+
+.contenido-inicio p{
+
+font-size:21px;
+
+line-height:1.7;
+
+}
 
 
-});
+
+#btnInicio{
+
+margin-top:35px;
+
+padding:18px 45px;
+
+font-size:20px;
+
+}
+
+
+
+
+
+
+
+/* FRASES */
+
+.frases{
+
+margin-top:45px;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+.frases span{
+
+background:white;
+
+color:#6c5ce7;
+
+padding:15px 25px;
+
+border-radius:40px;
+
+font-weight:700;
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.2);
+
+animation:flotar 3s infinite alternate;
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+        BOTONES
+========================= */
+
+
+button{
+
+border:none;
+
+cursor:pointer;
+
+padding:14px 30px;
+
+border-radius:35px;
+
+background:
+
+linear-gradient(
+45deg,
+#ff9f1c,
+#ff5722
+);
+
+
+color:white;
+
+font-weight:700;
+
+transition:.3s;
+
+}
+
+
+
+button:hover{
+
+transform:scale(1.08);
+
+box-shadow:
+
+0 10px 25px rgba(0,0,0,.25);
+
+}
+
+
+
+
+
+
+
+/* =========================
+        MENU
+========================= */
+
+
+.barra-menu{
+
+position:sticky;
+
+top:0;
+
+z-index:100;
+
+background:white;
+
+padding:20px;
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+box-shadow:
+
+0 5px 20px rgba(0,0,0,.15);
+
+}
+
+
+
+.barra-menu a{
+
+text-decoration:none;
+
+color:#6c5ce7;
+
+font-weight:700;
+
+}
+
+
+
+.barra-menu a:hover{
+
+color:#ff5722;
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+        SECCIONES
+========================= */
+
+
+section{
+
+padding:80px 8%;
+
+}
+
+
+
+section h2{
+
+text-align:center;
+
+font-size:42px;
+
+color:#6c5ce7;
+
+margin-bottom:50px;
+
+}
+
+
+
+
+
+
+
+/* =========================
+       TARJETAS
+========================= */
+
+
+.tarjetas{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(280px,1fr));
+
+gap:35px;
+
+}
+
+
+
+.tarjeta{
+
+background:white;
+
+padding:35px;
+
+border-radius:35px;
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.12);
+
+transition:.4s;
+
+}
+
+
+
+.tarjeta:hover{
+
+transform:translateY(-15px);
+
+}
+
+
+
+.tarjeta1{
+
+border-top:12px solid #6c5ce7;
+
+}
+
+
+.tarjeta2{
+
+border-top:12px solid #00b894;
+
+}
+
+
+.tarjeta3{
+
+border-top:12px solid #ff9f1c;
+
+}
+
+
+
+
+.mensaje-info{
+
+margin-top:20px;
+
+padding:15px;
+
+border-radius:20px;
+
+background:#f1f2f6;
+
+}
+
+
+
+
+
+
+
+/* =========================
+        MITOS
+========================= */
+
+
+.mitos{
+
+background:
+
+linear-gradient(
+135deg,
+#fff0f6,
+#eef7ff
+);
+
+}
+
+
+
+.mitos-grid{
+
+display:flex;
+
+justify-content:center;
+
+gap:30px;
+
+flex-wrap:wrap;
+
+}
+
+
+
+.mito,
+.realidad{
+
+background:white;
+
+padding:35px;
+
+border-radius:30px;
+
+max-width:350px;
+
+box-shadow:
+
+0 15px 30px rgba(0,0,0,.12);
+
+}
+
+
+
+.mito h3{
+
+color:#ff4757;
+
+}
+
+
+
+.realidad h3{
+
+color:#00b894;
+
+}
+
+
+
+
+
+
+
+/* =========================
+       HISTORIAS
+========================= */
+
+
+.historias-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(300px,1fr));
+
+gap:30px;
+
+}
+
+
+
+.historia{
+
+background:white;
+
+padding:35px;
+
+border-radius:35px;
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+
+.historia h3{
+
+color:#0984e3;
+
+}
+
+
+
+.resultado{
+
+margin-top:20px;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+        VIDEOS
+========================= */
+
+
+.videos-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fit,minmax(320px,1fr));
+
+gap:30px;
+
+}
+
+
+
+.video-card{
+
+background:white;
+
+padding:30px;
+
+border-radius:35px;
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.12);
+
+}
+
+
+
+.video-card iframe{
+
+width:100%;
+
+height:230px;
+
+border:none;
+
+border-radius:25px;
+
+}
+
+
+
+textarea{
+
+width:100%;
+
+padding:15px;
+
+margin-top:15px;
+
+border-radius:20px;
+
+border:2px solid #ddd;
+
+resize:none;
+
+min-height:120px;
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+        QUIZ
+========================= */
+
+
+.quiz-box{
+
+background:white;
+
+padding:40px;
+
+border-radius:35px;
+
+box-shadow:
+
+0 15px 35px rgba(0,0,0,.15);
+
+}
+
+
+
+.pregunta{
+
+margin-bottom:30px;
+
+}
+
+
+
+
+
+.respuesta{
+
+display:block;
+
+width:100%;
+
+margin:10px 0;
+
+background:#6c5ce7;
+
+}
+
+
+
+.respuesta.correctaQuiz{
+
+background:#00b894;
+
+}
+
+
+
+
+
+
+
+/* =========================
+       PUPILETRAS
+========================= */
+
+
+.pupiletras-container{
+
+background:white;
+
+padding:45px;
+
+border-radius:40px;
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.15);
+
+}
+
+
+
+
+.juego-flex{
+
+display:grid;
+
+grid-template-columns:
+
+300px 1fr;
+
+gap:40px;
+
+align-items:center;
+
+}
+
+
+
+
+.lista-juego{
+
+background:#f5f0ff;
+
+padding:25px;
+
+border-radius:30px;
+
+}
+
+
+
+.lista-juego h3{
+
+color:#00a878;
+
+margin-bottom:15px;
+
+}
+
+
+
+.titulo-malas{
+
+color:#ff4757!important;
+
+margin-top:25px;
+
+}
+
+
+
+.lista-juego span{
+
+display:inline-block;
+
+background:white;
+
+padding:8px 15px;
+
+border-radius:20px;
+
+margin:5px;
+
+font-size:14px;
+
+}
+
+
+
+
+#pupiletras{
+
+border-collapse:collapse;
+
+margin:auto;
+
+}
+
+
+
+#pupiletras td{
+
+width:55px;
+
+height:55px;
+
+border:3px solid #6c5ce7;
+
+text-align:center;
+
+font-size:22px;
+
+font-weight:800;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+
+
+#pupiletras td:hover{
+
+background:#ffd93d;
+
+}
+
+
+
+.letra-activa{
+
+background:#00b894!important;
+
+color:white;
+
+border-radius:50%;
+
+}
+
+
+
+.barra-progreso{
+
+height:18px;
+
+background:#ddd;
+
+border-radius:20px;
+
+overflow:hidden;
+
+}
+
+
+
+#avanceJuego{
+
+height:100%;
+
+width:0%;
+
+background:
+
+linear-gradient(
+90deg,
+#6c5ce7,
+#00b894
+);
+
+transition:.5s;
+
+}
+
+
+
+
+
+
+/* =========================
+     FORMULARIO
+========================= */
+
+
+.participacion{
+
+display:grid;
+
+grid-template-columns:
+
+1fr 1fr;
+
+gap:40px;
+
+background:white;
+
+padding:45px;
+
+border-radius:40px;
+
+box-shadow:
+
+0 20px 40px rgba(0,0,0,.15);
+
+}
+
+
+
+.panel-reflexion h3{
+
+color:#6c5ce7;
+
+font-size:30px;
+
+}
+
+
+
+.preguntas div{
+
+background:#f1f2f6;
+
+padding:15px;
+
+border-radius:20px;
+
+margin:15px 0;
+
+}
+
+
+
+
+input,
+select{
+
+width:100%;
+
+padding:15px;
+
+margin:10px 0;
+
+border-radius:20px;
+
+border:2px solid #ddd;
+
+}
+
+
+
+
+
+.boton-whatsapp{
+
+display:inline-block;
+
+margin-top:25px;
+
+background:#25d366;
+
+color:white;
+
+padding:15px 30px;
+
+border-radius:40px;
+
+text-decoration:none;
+
+font-weight:bold;
+
+}
+
+
+
+
+
+
+
+
+/* =========================
+        FINAL
+========================= */
+
+
+.final{
+
+background:
+
+linear-gradient(
+135deg,
+#6c5ce7,
+#00b894
+);
+
+}
+
+
+
+.logro{
+
+background:white;
+
+padding:50px;
+
+border-radius:40px;
+
+text-align:center;
+
+}
+
+
+
+.logro h2{
+
+color:#6c5ce7;
+
+}
+
+
+
+
+footer{
+
+background:#222;
+
+color:white;
+
+padding:40px;
+
+text-align:center;
+
+}
+
+
+
+
+
+
+
+@keyframes flotar{
+
+from{
+
+transform:translateY(0);
+
+}
+
+
+to{
+
+transform:translateY(-15px);
+
+}
+
+}
+
+
+
+
+
+
+
+@media(max-width:900px){
+
+
+.juego-flex,
+.participacion{
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.contenido-inicio h1{
+
+font-size:45px;
+
+}
+
+
+
+#pupiletras td{
+
+width:35px;
+
+height:35px;
+
+font-size:14px;
+
+}
+
+
+}
