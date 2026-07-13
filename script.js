@@ -1,1626 +1,552 @@
-<!DOCTYPE html>
-<html lang="es">
+// ==========================================
+// INICIO DE AVENTURA
+// ==========================================
 
-<head>
 
-<meta charset="UTF-8">
+const btnInicio = document.getElementById("btnInicio");
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>
-Rompiendo Barreras | Prejuicios, Estereotipos y Discriminación
-</title>
+if(btnInicio){
 
+btnInicio.addEventListener("click",()=>{
 
-<link rel="stylesheet" href="style.css">
 
-</head>
+document
+.getElementById("aprende")
+.scrollIntoView({
 
+behavior:"smooth"
 
-<body>
+});
 
 
-<div class="pagina">
+});
 
+}
 
-<!-- =========================
-     PORTADA
-========================= -->
 
 
-<header class="inicio">
 
 
-<div class="contenido-inicio">
 
+// ==========================================
+// TARJETAS EDUCATIVAS
+// ==========================================
 
-<h1>
-Rompiendo Barreras
-</h1>
 
+const botonesInfo =
+document.querySelectorAll(".btn-info");
 
-<h2>
-Una aventura por la igualdad
-</h2>
 
 
+const mensajes=[
 
-<p>
-Descubre cómo los prejuicios, estereotipos y la discriminación
-afectan nuestra convivencia y aprende a construir espacios
-más respetuosos e inclusivos.
-</p>
 
+"Ejemplo: Pensar que una persona no puede lograr algo solo por su apariencia o procedencia.",
 
 
-<button id="btnInicio">
+"Ejemplo: Creer que todos los integrantes de un grupo son iguales sin conocerlos.",
 
-🚀 Comenzar aventura
 
-</button>
+"Ejemplo: Excluir o tratar mal a alguien por sus características personales."
 
+];
 
 
-<div class="frases">
 
+botonesInfo.forEach((boton,index)=>{
 
-<span>
-Todos somos únicos
-</span>
 
+boton.addEventListener("click",()=>{
 
-<span>
-Las diferencias nos unen
-</span>
 
+let caja =
+boton.parentElement.querySelector(".mensaje-info");
 
-<span>
-El respeto cambia historias
-</span>
 
+caja.innerHTML = mensajes[index];
 
-</div>
 
+});
 
+});
 
-</div>
 
 
-</header>
 
 
 
 
 
-<!-- =========================
-       MENU
-========================= -->
+// ==========================================
+// HISTORIAS INTERACTIVAS
+// ==========================================
 
 
-<nav class="barra-menu">
+const opciones =
+document.querySelectorAll(".opcion");
 
 
-<a href="#aprende">
-🧠 Aprende
-</a>
 
+opciones.forEach(opcion=>{
 
-<a href="#historias">
-📖 Historias
-</a>
 
+opcion.addEventListener("click",()=>{
 
-<a href="#videos">
-🎬 Videos
-</a>
 
+let resultado =
+opcion.parentElement.querySelector(".resultado");
 
-<a href="#juegos">
-🎮 Juegos
-</a>
 
 
-<a href="#opinion">
-💬 Tu voz
-</a>
+if(opcion.classList.contains("correcta")){
 
 
-</nav>
+resultado.innerHTML =
+"✅ Excelente decisión. Demuestras empatía, respeto e inclusión.";
 
 
+resultado.style.color="#00b894";
 
 
+}
 
+else{
 
 
-<!-- =========================
-       APRENDIZAJE
-========================= -->
+resultado.innerHTML =
+"❌ Esta acción puede generar exclusión. Reflexiona sobre cómo afecta a los demás.";
 
 
-<section id="aprende">
+resultado.style.color="#ff4757";
 
 
-<h2>
-🧩 Aprende y descubre
-</h2>
+}
 
 
 
-<div class="tarjetas">
+});
 
+});
 
-<div class="tarjeta tarjeta1">
 
 
-<h3>
-Prejuicios
-</h3>
 
 
-<p>
 
-Son ideas u opiniones que formamos sobre alguien
-sin conocer realmente su historia.
 
-</p>
+// ==========================================
+// QUIZ
+// ==========================================
 
 
-<button class="btn-info">
+let puntaje=0;
 
-Ver ejemplo
 
-</button>
+let preguntasRespondidas=0;
 
 
 
-<div class="mensaje-info">
+const respuestas =
+document.querySelectorAll(".respuesta");
 
-</div>
 
 
-</div>
+respuestas.forEach(respuesta=>{
 
 
+respuesta.addEventListener("click",()=>{
 
 
+if(respuesta.disabled){
 
+return;
 
+}
 
-<div class="tarjeta tarjeta2">
 
 
-<h3>
-Estereotipos
-</h3>
+let grupo =
+respuesta.parentElement;
 
 
-<p>
 
-Son creencias que hacen pensar que todas las personas
-de un grupo tienen las mismas características.
+grupo
+.querySelectorAll("button")
+.forEach(btn=>{
 
-</p>
+btn.disabled=true;
 
+});
 
 
-<button class="btn-info">
 
-Ver ejemplo
+preguntasRespondidas++;
 
-</button>
 
 
+if(respuesta.classList.contains("correctaQuiz")){
 
-<div class="mensaje-info">
 
-</div>
+puntaje +=25;
 
 
-</div>
+respuesta.style.background="#00b894";
 
 
+}
 
+else{
 
 
+respuesta.style.background="#ff4757";
 
 
-<div class="tarjeta tarjeta3">
+}
 
 
-<h3>
-Discriminación
-</h3>
 
+document
+.getElementById("resultadoQuiz")
+.innerHTML=
+"Puntaje: "+puntaje;
 
-<p>
 
-Es tratar injustamente o excluir a una persona
-por sus características personales.
 
-</p>
+});
 
+});
 
 
-<button class="btn-info">
 
-Ver ejemplo
 
-</button>
 
 
-<div class="mensaje-info">
 
-</div>
+// ==========================================
+// PUPILETRAS
+// ==========================================
 
 
-</div>
 
+const palabrasJuego=[
 
 
-</div>
+"RESPETO",
 
+"EMPATIA",
 
+"IGUALDAD",
 
-</section>
+"INCLUSION",
 
+"EQUIDAD",
 
+"DIVERSIDAD",
 
+"TOLERANCIA",
 
+"SOLIDARIDAD",
 
+"AMISTAD",
 
+"PREJUICIO",
 
-<!-- =========================
-       MITOS
-========================= -->
+"RACISMO",
 
+"BURLA",
 
-<section class="mitos">
+"EXCLUSION",
 
+"ODIO",
 
-<h2>
-❓ Mitos y realidades
-</h2>
+"VIOLENCIA"
 
 
+];
 
-<div class="mitos-grid">
 
 
-<div class="mito">
+let palabrasEncontradas=[];
 
 
-<h3>
-❌ MITO
-</h3>
 
+const letras =
+document.querySelectorAll("#pupiletras td");
 
-<p>
 
-"Todas las personas de un grupo son iguales".
 
-</p>
+let seleccion="";
 
 
-</div>
 
+letras.forEach(letra=>{
 
 
-<div class="realidad">
+letra.addEventListener("click",()=>{
 
 
-<h3>
-✅ REALIDAD
-</h3>
+letra.classList.toggle("letra-activa");
 
 
-<p>
 
-Cada persona tiene una historia,
-capacidades y pensamientos diferentes.
+seleccion="";
 
-</p>
 
 
-</div>
+document
+.querySelectorAll(".letra-activa")
+.forEach(l=>{
 
 
+seleccion += l.textContent;
 
-</div>
 
+});
 
-</section>
 
-<!-- =========================
-       HISTORIAS INTERACTIVAS
-========================= -->
 
+buscarPalabra();
 
-<section id="historias">
 
+});
 
-<h2>
-📖 Historias para reflexionar
-</h2>
+});
 
 
 
-<div class="historias-grid">
 
 
+function buscarPalabra(){
 
-<div class="historia">
 
 
-<h3>
-El nuevo estudiante
-</h3>
+palabrasJuego.forEach(palabra=>{
 
 
-<p>
+if(
 
-Mateo llegó a una nueva escuela. Algunos compañeros
-se burlaron porque hablaba diferente.
+seleccion.includes(palabra)
 
-</p>
+&&
 
+!palabrasEncontradas.includes(palabra)
 
+){
 
-<h4>
-¿Qué harías tú?
 
-</h4>
+palabrasEncontradas.push(palabra);
 
 
 
-<button class="opcion correcta">
+document
+.getElementById("contadorPalabras")
+.innerHTML =
 
-Conocerlo y hacerlo sentir incluido
+palabrasEncontradas.length+
+" / 15 palabras encontradas";
 
-</button>
 
 
+let avance =
 
-<button class="opcion">
+(palabrasEncontradas.length/15)*100;
 
-Burlarme porque es diferente
 
-</button>
 
+document
+.getElementById("avanceJuego")
+.style.width=
+avance+"%";
 
 
-<button class="opcion">
 
-Ignorarlo
 
-</button>
 
+document
+.getElementById("mensajeJuego")
+.innerHTML=
 
+"🎉 Encontraste: "+palabra;
 
-<p class="resultado">
 
-</p>
 
+}
 
 
-</div>
 
+});
 
 
 
 
 
+if(palabrasEncontradas.length===15){
 
-<div class="historia">
 
+document
+.getElementById("mensajeJuego")
+.innerHTML=
 
-<h3>
-Rompiendo estereotipos
-</h3>
+"🏆 ¡Excelente! Completaste la misión de igualdad.";
 
 
+}
 
-<p>
 
-Ana quiere estudiar una carrera donde algunas personas
-dicen que "no es para mujeres".
 
-</p>
+}
 
 
 
-<h4>
-¿Cuál es la mejor respuesta?
 
-</h4>
 
 
 
-<button class="opcion correcta">
 
-Cada persona puede elegir su camino
 
-</button>
+// ==========================================
+// FORMULARIO
+// ==========================================
 
 
+const formulario =
+document.getElementById("formOpinion");
 
-<button class="opcion">
 
-Debe hacer lo que otros esperan
 
-</button>
+const mensajeEnvio =
+document.getElementById("mensajeEnvio");
 
 
 
-<p class="resultado">
+if(formulario){
 
-</p>
 
+formulario.addEventListener("submit",()=>{
 
-</div>
 
+if(mensajeEnvio){
 
 
+mensajeEnvio.style.display="block";
 
 
+mensajeEnvio.innerHTML=
 
+"✅ Gracias por compartir tu reflexión. Tu opinión ayuda a construir una sociedad más inclusiva.";
 
-<div class="historia">
 
+}
 
-<h3>
-Diferentes culturas
-</h3>
 
 
+});
 
-<p>
 
-Un estudiante comparte una tradición de su comunidad
-y algunos compañeros se burlan.
+}
 
-</p>
 
 
 
-<h4>
-¿Qué demuestra respeto?
 
-</h4>
 
 
+// ==========================================
+// MENSAJE FINAL
+// ==========================================
 
-<button class="opcion correcta">
 
-Escuchar y valorar su cultura
 
-</button>
+const btnFinal =
+document.getElementById("btnMensajeFinal");
 
 
 
-<button class="opcion">
+if(btnFinal){
 
-Pedirle que cambie
 
-</button>
+btnFinal.addEventListener("click",()=>{
 
 
+document
+.getElementById("textoFinal")
+.innerHTML=
 
-<p class="resultado">
+"🌎 Recuerda: cada acción de respeto puede cambiar la vida de otra persona.";
 
-</p>
 
 
+});
 
-</div>
+}
 
 
 
-</div>
 
 
 
-</section>
 
 
+// ==========================================
+// ANIMACIONES SCROLL
+// ==========================================
 
 
 
+const elementos =
 
+document.querySelectorAll(
 
-<!-- =========================
-          VIDEOS
-========================= -->
+".tarjeta, .historia, .video-card, .pupiletras-container, .participacion"
 
+);
 
-<section id="videos">
 
 
-<h2>
-🎬 Aprende con videos
-</h2>
+const observador =
 
+new IntersectionObserver((entradas)=>{
 
 
-<div class="videos-grid">
+entradas.forEach(entrada=>{
 
 
+if(entrada.isIntersecting){
 
-<div class="video-card">
 
+entrada.target.style.opacity="1";
 
-<h3>
-Comprendiendo los prejuicios
-</h3>
 
+entrada.target.style.transform=
+"translateY(0)";
 
 
-<iframe
+}
 
-src="https://www.youtube.com/embed/-4o6tQkJdwo"
 
-allowfullscreen>
+});
 
-</iframe>
 
+});
 
 
-<textarea placeholder="¿Qué enseñanza deja este video?">
 
-</textarea>
+elementos.forEach(elemento=>{
 
 
-</div>
+elemento.style.opacity="0";
 
 
+elemento.style.transform=
+"translateY(40px)";
 
 
+elemento.style.transition=
+"0.8s";
 
 
+observador.observe(elemento);
 
-<div class="video-card">
 
-
-<h3>
-Reflexionemos sobre la discriminación
-</h3>
-
-
-
-<iframe
-
-src="https://www.youtube.com/embed/nlTtRDtD_TI"
-
-allowfullscreen>
-
-</iframe>
-
-
-
-<textarea placeholder="Escribe tu reflexión">
-
-</textarea>
-
-
-</div>
-
-
-
-
-
-
-
-<div class="video-card">
-
-
-<h3>
-La importancia de la igualdad
-</h3>
-
-
-
-<iframe
-
-src="https://www.youtube.com/embed/J0e2KYFxGOI"
-
-allowfullscreen>
-
-</iframe>
-
-
-
-<textarea placeholder="¿Qué aprendiste?">
-
-</textarea>
-
-
-</div>
-
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-<!-- =========================
-          QUIZ
-========================= -->
-
-
-<section id="quiz">
-
-
-<h2>
-🏆 Reto de aprendizaje
-</h2>
-
-
-
-<div class="quiz-box">
-
-
-
-<div class="pregunta">
-
-
-<h3>
-1. Un prejuicio es:
-</h3>
-
-
-<button class="respuesta correctaQuiz">
-
-Una opinión formada sin conocer realmente a alguien
-
-</button>
-
-
-<button class="respuesta">
-
-Una verdad absoluta sobre una persona
-
-</button>
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="pregunta">
-
-
-<h3>
-2. Los estereotipos pueden:
-</h3>
-
-
-
-<button class="respuesta correctaQuiz">
-
-Crear ideas falsas sobre grupos de personas
-
-</button>
-
-
-
-<button class="respuesta">
-
-Definir completamente a alguien
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<div class="pregunta">
-
-
-<h3>
-3. La discriminación provoca:
-</h3>
-
-
-
-<button class="respuesta correctaQuiz">
-
-Exclusión y desigualdad
-
-</button>
-
-
-
-<button class="respuesta">
-
-Mayor respeto
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-<div class="pregunta">
-
-
-<h3>
-4. La empatía significa:
-</h3>
-
-
-
-<button class="respuesta correctaQuiz">
-
-Comprender los sentimientos de otras personas
-
-</button>
-
-
-
-<button class="respuesta">
-
-Juzgar sin conocer
-
-</button>
-
-
-
-</div>
-
-
-
-
-
-
-
-<h2 id="resultadoQuiz">
-
-Puntaje: 0
-
-</h2>
-
-
-
-</div>
-
-
-
-</section>
-<!-- =========================
-        JUEGO PUPILETRAS
-========================= -->
-
-
-<section id="juegos">
-
-
-<h2>
-🎮 Misión: Romper Barreras
-</h2>
-
-
-
-<div class="pupiletras-container">
-
-
-
-<div class="introduccion-juego">
-
-
-<h3>
-🔎 Pupiletras de la igualdad
-</h3>
-
-
-<p>
-
-Encuentra las palabras escondidas y descubre
-qué actitudes ayudan a construir una sociedad mejor.
-
-</p>
-
-
-</div>
-
-
-
-
-
-<div class="juego-flex">
-
-
-
-
-
-<!-- LISTA DE PALABRAS -->
-
-<div class="lista-juego">
-
-
-
-<h3>
-✅ Valores positivos
-</h3>
-
-
-
-<div class="palabras-buenas">
-
-
-<span>
-RESPETO
-</span>
-
-
-<span>
-EMPATIA
-</span>
-
-
-<span>
-IGUALDAD
-</span>
-
-
-<span>
-INCLUSION
-</span>
-
-
-<span>
-EQUIDAD
-</span>
-
-
-<span>
-DIVERSIDAD
-</span>
-
-
-<span>
-TOLERANCIA
-</span>
-
-
-<span>
-SOLIDARIDAD
-</span>
-
-
-<span>
-AMISTAD
-</span>
-
-
-
-</div>
-
-
-
-
-
-
-<h3 class="titulo-malas">
-
-❌ Actitudes negativas
-
-</h3>
-
-
-
-<div class="palabras-malas">
-
-
-<span>
-PREJUICIO
-</span>
-
-
-<span>
-RACISMO
-</span>
-
-
-<span>
-BURLA
-</span>
-
-
-<span>
-EXCLUSION
-</span>
-
-
-<span>
-ODIO
-</span>
-
-
-<span>
-VIOLENCIA
-</span>
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<!-- TABLERO -->
-
-
-
-<div class="tablero-area">
-
-
-
-<table id="pupiletras">
-
-
-<tr>
-<td>R</td>
-<td>E</td>
-<td>S</td>
-<td>P</td>
-<td>E</td>
-<td>T</td>
-<td>O</td>
-<td>A</td>
-<td>M</td>
-<td>X</td>
-<td>D</td>
-<td>F</td>
-</tr>
-
-
-<tr>
-<td>A</td>
-<td>B</td>
-<td>C</td>
-<td>D</td>
-<td>E</td>
-<td>F</td>
-<td>G</td>
-<td>H</td>
-<td>I</td>
-<td>J</td>
-<td>K</td>
-<td>L</td>
-</tr>
-
-
-
-<tr>
-<td>E</td>
-<td>M</td>
-<td>P</td>
-<td>A</td>
-<td>T</td>
-<td>I</td>
-<td>A</td>
-<td>N</td>
-<td>O</td>
-<td>P</td>
-<td>Q</td>
-<td>R</td>
-</tr>
-
-
-
-
-<tr>
-<td>I</td>
-<td>N</td>
-<td>C</td>
-<td>L</td>
-<td>U</td>
-<td>S</td>
-<td>I</td>
-<td>O</td>
-<td>N</td>
-<td>S</td>
-<td>T</td>
-<td>U</td>
-</tr>
-
-
-
-
-<tr>
-<td>P</td>
-<td>R</td>
-<td>E</td>
-<td>J</td>
-<td>U</td>
-<td>I</td>
-<td>C</td>
-<td>I</td>
-<td>O</td>
-<td>V</td>
-<td>W</td>
-<td>X</td>
-</tr>
-
-
-
-
-<tr>
-<td>I</td>
-<td>G</td>
-<td>U</td>
-<td>A</td>
-<td>L</td>
-<td>D</td>
-<td>A</td>
-<td>D</td>
-<td>Y</td>
-<td>Z</td>
-<td>A</td>
-<td>B</td>
-</tr>
-
-
-
-
-<tr>
-<td>D</td>
-<td>I</td>
-<td>V</td>
-<td>E</td>
-<td>R</td>
-<td>S</td>
-<td>I</td>
-<td>D</td>
-<td>A</td>
-<td>D</td>
-<td>C</td>
-<td>D</td>
-</tr>
-
-
-
-
-<tr>
-<td>T</td>
-<td>O</td>
-<td>L</td>
-<td>E</td>
-<td>R</td>
-<td>A</td>
-<td>N</td>
-<td>C</td>
-<td>I</td>
-<td>A</td>
-<td>E</td>
-<td>F</td>
-</tr>
-
-
-
-
-<tr>
-<td>R</td>
-<td>A</td>
-<td>C</td>
-<td>I</td>
-<td>S</td>
-<td>M</td>
-<td>O</td>
-<td>G</td>
-<td>H</td>
-<td>I</td>
-<td>J</td>
-<td>K</td>
-</tr>
-
-
-
-
-<tr>
-<td>E</td>
-<td>X</td>
-<td>C</td>
-<td>L</td>
-<td>U</td>
-<td>S</td>
-<td>I</td>
-<td>O</td>
-<td>N</td>
-<td>L</td>
-<td>M</td>
-<td>N</td>
-</tr>
-
-
-
-
-<tr>
-<td>S</td>
-<td>O</td>
-<td>L</td>
-<td>I</td>
-<td>D</td>
-<td>A</td>
-<td>R</td>
-<td>I</td>
-<td>D</td>
-<td>A</td>
-<td>D</td>
-<td>O</td>
-</tr>
-
-
-
-
-<tr>
-<td>A</td>
-<td>M</td>
-<td>I</td>
-<td>S</td>
-<td>T</td>
-<td>A</td>
-<td>D</td>
-<td>P</td>
-<td>Q</td>
-<td>R</td>
-<td>S</td>
-<td>T</td>
-</tr>
-
-
-
-</table>
-
-
-
-
-<div class="progreso-juego">
-
-
-<h3>
-Progreso:
-</h3>
-
-
-<div class="barra-progreso">
-
-
-<div id="avanceJuego">
-
-</div>
-
-
-</div>
-
-
-
-<p id="contadorPalabras">
-
-0 / 15 palabras encontradas
-
-</p>
-
-
-
-<p id="mensajeJuego">
-
-</p>
-
-
-
-</div>
-
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-</section>
-<!-- =========================
-        TU VOZ IMPORTA
-========================= -->
-
-
-<section id="opinion">
-
-
-<h2>
-💬 Tu voz importa
-</h2>
-
-
-
-<div class="participacion">
-
-
-
-
-
-<div class="panel-reflexion">
-
-
-<h3>
-Comparte tu experiencia
-</h3>
-
-
-
-<p>
-
-Todos tenemos una historia que contar.
-Tu opinión ayuda a crear espacios donde exista
-más respeto e igualdad.
-
-</p>
-
-
-
-<div class="preguntas">
-
-
-<div>
-🌎 ¿Has visto alguna situación injusta?
-</div>
-
-
-<div>
-🤝 ¿Cómo ayudarías a alguien que sufre discriminación?
-</div>
-
-
-<div>
-💡 ¿Qué cambio propondrías en tu comunidad?
-</div>
-
-
-
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<form 
-id="formOpinion"
-
-action="https://formsubmit.co/jbernaoladonayre648@gmail.com"
-
-method="POST">
-
-
-
-<h3>
-Envíanos tu reflexión
-</h3>
-
-
-
-<input
-
-type="text"
-
-name="Nombre"
-
-placeholder="Tu nombre (opcional)">
-
-
-
-
-
-<input
-
-type="number"
-
-name="Edad"
-
-placeholder="Tu edad">
-
-
-
-
-
-<select name="Tema">
-
-
-<option>
-Selecciona una situación
-</option>
-
-
-<option>
-Prejuicio
-</option>
-
-
-<option>
-Estereotipo
-</option>
-
-
-<option>
-Discriminación
-</option>
-
-
-<option>
-Inclusión
-</option>
-
-
-</select>
-
-
-
-
-
-
-<textarea
-
-name="Experiencia"
-
-placeholder="Cuéntanos tu experiencia">
-
-</textarea>
-
-
-
-
-
-
-<textarea
-
-name="Propuesta"
-
-placeholder="¿Qué podemos hacer para mejorar?">
-
-</textarea>
-
-
-
-
-
-
-
-<input 
-type="hidden"
-name="_subject"
-value="Nueva reflexión - Rompiendo Barreras">
-
-
-
-<input 
-type="hidden"
-name="_captcha"
-value="false">
-
-
-
-<input 
-type="hidden"
-name="_template"
-value="table">
-
-
-
-<button type="submit">
-
-🚀 Enviar reflexión
-
-</button>
-
-
-
-</form>
-
-
-
-
-
-<div 
-id="mensajeEnvio">
-
-</div>
-
-
-
-
-
-
-<a
-
-class="boton-whatsapp"
-
-href="https://wa.me/51984469436?text=Hola,%20quiero%20compartir%20una%20reflexión%20sobre%20Rompiendo%20Barreras"
-
-target="_blank">
-
-
-📱 Compartir por WhatsApp
-
-
-</a>
-
-
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- =========================
-        FINAL
-========================= -->
-
-
-<section class="final">
-
-
-<div class="logro">
-
-
-<h2>
-🎉 ¡Misión completada!
-</h2>
-
-
-
-<p>
-
-Ahora sabes que nuestras diferencias
-no deben separarnos, sino enseñarnos
-a respetarnos y valorarnos.
-
-</p>
-
-
-
-<h3>
-
-"El cambio empieza cuando decidimos comprender"
-
-</h3>
-
-
-
-<button id="btnMensajeFinal">
-
-Ver mensaje final
-
-</button>
-
-
-
-
-<p id="textoFinal">
-
-</p>
-
-
-
-</div>
-
-
-
-</section>
-
-
-
-
-
-
-
-<!-- =========================
-        FOOTER
-========================= -->
-
-
-<footer>
-
-
-<h3>
-
-Rompiendo Barreras
-
-</h3>
-
-
-
-<p>
-
-Una experiencia educativa para aprender,
-reflexionar y construir igualdad.
-
-</p>
-
-
-
-<p>
-
-© 2026 - Proyecto educativo
-
-</p>
-
-
-
-</footer>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-<script src="script.js"></script>
-
-
-</body>
-
-</html>
+});
